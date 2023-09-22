@@ -1,39 +1,58 @@
 type Mutation {
     addPost(post: PostInput): Post
     addComment(comment: CommentInput): Comment
-}
-
-
-input PostInput{
-    title: String! 
-    content: String! 
-    date: String! 
-    author: String!
-}
-
-type Post{
-    id: ID!
-    title: String! 
-    content: String! 
-    date: String! 
-    author: String!
+    addUser(user: UserInput): User
 }
 
 type Query {
-    postById(id: ID!): Post
+    postById(id: ID): Post
+    comments: [Comment]
+    users: [User]
+    posts: [Post]
+}
+
+input PostInput {
+    UserId: ID!
+    title: String! 
+    content: String! 
+    date: String! 
+    author: String!
+}
+
+type Post {
+    id: ID!
+    title: String
+    content: String
+    date: String
+    author: String
+    userId: ID!
     comments: [Comment]
 }
 
 input CommentInput {
-    PostId: ID!
+    postId: ID!
     content: String!
     date: String!
     author: String!
 }
 
-type Comment{
-    id: ID!
+type Comment {
+    id: ID
     content: String
     date: String
     author: String
+    postId: ID!
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    posts: [Post]
+}
+
+input UserInput {
+    username: String!
+    email: String!
+    password: String!
 }
