@@ -1,0 +1,25 @@
+<!-- Generate a toolbar according whit angular material-->
+<mat-toolbar color="primary">
+  <span>Angular Material App</span>
+</mat-toolbar>
+
+<!-- Generate a Material tabel with two columns: "curso" and "categoria"-->
+<table mat-table [dataSource]="dataSource">
+
+  <!-- Column curso -->
+  <ng-container matColumnDef="curso">
+    <th mat-header-cell *matHeaderCellDef> Curso </th>
+    <td mat-cell *matCellDef="let element"> {{element.curso}} </td>
+  </ng-container>
+
+  <!-- Column categoria -->
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef> Categoria </th>
+    <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
